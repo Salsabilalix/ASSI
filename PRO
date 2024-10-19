@@ -1,0 +1,157 @@
+import 'package:flutter/material.dart';
+
+void main() => runApp(const MyApp());
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const MaterialApp(
+      home: ProfileScreen(),
+      debugShowCheckedModeBanner: false,
+    );
+  }
+}
+
+class ProfileScreen extends StatelessWidget {
+  const ProfileScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.black,
+      body: SafeArea(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            // Profile Picture
+            const CircleAvatar(
+              radius: 60.0,
+              backgroundImage: AssetImage('assets/profile_picture.jpg'), // Add your profile picture in the assets folder
+            ),
+            const SizedBox(height: 20.0),
+            // Name and Title
+            const Text(
+              'Hello I am',
+              style: TextStyle(
+                fontSize: 18.0,
+                color: Colors.white,
+                letterSpacing: 2.0,
+              ),
+            ),
+            const SizedBox(height: 5.0),
+            const Text(
+              'Salsabil Ali',
+              style: TextStyle(
+                fontSize: 28.0,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
+            ),
+            const SizedBox(height: 5.0),
+            const Text(
+              'UI Designer & Developer',
+              style: TextStyle(
+                fontSize: 18.0,
+                color: Colors.white70,
+              ),
+            ),
+            const SizedBox(height: 20.0),
+            // Button
+            ElevatedButton(
+              onPressed: () {
+                // Add your action here
+              },
+              style: ElevatedButton.styleFrom(
+                // primary: Colors.white,
+                // onPrimary: Colors.black,
+                padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 15),
+              ),
+              child: const Text('Hire Me'),
+            ),
+            const SizedBox(height: 20.0),
+            // Stats Row
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                buildStatCard("42", "Projects"),
+                buildStatCard("712", "Clients"),
+                buildStatCard("92", "Messages"),
+              ],
+            ),
+            const SizedBox(height: 30.0),
+            // Specializations
+            Expanded(
+              child: GridView.count(
+                padding: const EdgeInsets.all(20.0),
+                crossAxisCount: 3,
+                crossAxisSpacing: 15.0,
+                mainAxisSpacing: 15.0,
+                children: [
+                  buildSpecializationCard(Icons.lightbulb, "Concepting"),
+                  buildSpecializationCard(Icons.design_services, "UX & UX"),
+                  buildSpecializationCard(Icons.brush, "Visual Design"),
+                  buildSpecializationCard(Icons.handshake, "Interaction"),
+                  buildSpecializationCard(Icons.analytics, "Analysis"),
+                  buildSpecializationCard(Icons.manage_accounts, "Client Management"),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget buildStatCard(String number, String label) {
+    return Column(
+      children: [
+        Text(
+          number,
+          style: const TextStyle(
+            color: Colors.white,
+            fontSize: 24.0,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        const SizedBox(height: 5.0),
+        Text(
+          label,
+          style: const TextStyle(
+            color: Colors.white70,
+            fontSize: 16.0,
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget buildSpecializationCard(IconData icon, String label) {
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.grey[800],
+        borderRadius: BorderRadius.circular(10.0),
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(
+            icon,
+            color: Colors.white,
+            size: 30.0,
+          ),
+          const SizedBox(height: 10.0),
+          Text(
+            label,
+            style: const TextStyle(
+              color: Colors.white,
+              fontSize: 14.0,
+            ),
+            textAlign: TextAlign.center,
+          ),
+        ],
+      ),
+    );
+  }
+}
